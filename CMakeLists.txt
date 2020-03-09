@@ -613,7 +613,7 @@ else (NOT BUILD_SHARED_LIBS)
 endif (NOT BUILD_SHARED_LIBS)
 
 # Unit testing
-
+set(BUILD_TESTING false)
 if (BUILD_TESTING)
   add_executable (logging_unittest
     src/logging_unittest.cc

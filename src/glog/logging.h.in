@@ -395,44 +395,111 @@ DECLARE_bool(stop_logging_if_full_disk);
 // better to have compact code for these operations.
 
 #if GOOGLE_STRIP_LOG == 0
-#define COMPACT_GOOGLE_LOG_INFO @ac_google_namespace@::LogMessage( \
+#define COMPACT_GOOGLE_LOG_INFO google::LogMessage( \
       __FILE__, __LINE__)
-#define LOG_TO_STRING_INFO(message) @ac_google_namespace@::LogMessage( \
-      __FILE__, __LINE__, @ac_google_namespace@::GLOG_INFO, message)
+#define LOG_TO_STRING_INFO(message) google::LogMessage( \
+      __FILE__, __LINE__, google::GLOG_INFO, message)
 #else
-#define COMPACT_GOOGLE_LOG_INFO @ac_google_namespace@::NullStream()
-#define LOG_TO_STRING_INFO(message) @ac_google_namespace@::NullStream()
+#define COMPACT_GOOGLE_LOG_INFO google::NullStream()
+#define LOG_TO_STRING_INFO(message) google::NullStream()
 #endif
 
+
 #if GOOGLE_STRIP_LOG <= 1
-#define COMPACT_GOOGLE_LOG_WARNING @ac_google_namespace@::LogMessage( \
-      __FILE__, __LINE__, @ac_google_namespace@::GLOG_WARNING)
-#define LOG_TO_STRING_WARNING(message) @ac_google_namespace@::LogMessage( \
-      __FILE__, __LINE__, @ac_google_namespace@::GLOG_WARNING, message)
+#define COMPACT_GOOGLE_LOG_WARNING google::LogMessage( \
+      __FILE__, __LINE__, google::GLOG_WARNING)
+#define LOG_TO_STRING_WARNING(message) google::LogMessage( \
+      __FILE__, __LINE__, google::GLOG_WARNING, message)
 #else
-#define COMPACT_GOOGLE_LOG_WARNING @ac_google_namespace@::NullStream()
-#define LOG_TO_STRING_WARNING(message) @ac_google_namespace@::NullStream()
+#define COMPACT_GOOGLE_LOG_WARNING google::NullStream()
+#define LOG_TO_STRING_WARNING(message) google::NullStream()
 #endif
 
 #if GOOGLE_STRIP_LOG <= 2
-#define COMPACT_GOOGLE_LOG_ERROR @ac_google_namespace@::LogMessage( \
-      __FILE__, __LINE__, @ac_google_namespace@::GLOG_ERROR)
-#define LOG_TO_STRING_ERROR(message) @ac_google_namespace@::LogMessage( \
-      __FILE__, __LINE__, @ac_google_namespace@::GLOG_ERROR, message)
+#define COMPACT_GOOGLE_LOG_ERROR google::LogMessage( \
+      __FILE__, __LINE__, google::GLOG_ERROR)
+#define LOG_TO_STRING_ERROR(message) google::LogMessage( \
+      __FILE__, __LINE__, google::GLOG_ERROR, message)
 #else
-#define COMPACT_GOOGLE_LOG_ERROR @ac_google_namespace@::NullStream()
-#define LOG_TO_STRING_ERROR(message) @ac_google_namespace@::NullStream()
+#define COMPACT_GOOGLE_LOG_ERROR google::NullStream()
+#define LOG_TO_STRING_ERROR(message) google::NullStream()
 #endif
 
+
+
 #if GOOGLE_STRIP_LOG <= 3
-#define COMPACT_GOOGLE_LOG_FATAL @ac_google_namespace@::LogMessageFatal( \
-      __FILE__, __LINE__)
-#define LOG_TO_STRING_FATAL(message) @ac_google_namespace@::LogMessage( \
-      __FILE__, __LINE__, @ac_google_namespace@::GLOG_FATAL, message)
+#define COMPACT_GOOGLE_LOG_LOG1 google::LogMessage( \
+      __FILE__, __LINE__, google::LOG1)
+#define LOG_TO_STRING_LOG1(message) google::LogMessage( \
+      __FILE__, __LINE__, google::LOG1, message)
 #else
-#define COMPACT_GOOGLE_LOG_FATAL @ac_google_namespace@::NullStreamFatal()
-#define LOG_TO_STRING_FATAL(message) @ac_google_namespace@::NullStreamFatal()
+#define COMPACT_GOOGLE_LOG_FATAL google::NullStreamFatal()
+#define LOG_TO_STRING_FATAL(message) google::NullStreamFatal()
 #endif
+
+#if GOOGLE_STRIP_LOG <= 4
+#define COMPACT_GOOGLE_LOG_LOG2 google::LogMessage( \
+      __FILE__, __LINE__, google::LOG2)
+#define LOG_TO_STRING_LOG2(message) google::LogMessage( \
+      __FILE__, __LINE__, google::LOG2, message)
+#else
+#define COMPACT_GOOGLE_LOG_FATAL google::NullStreamFatal()
+#define LOG_TO_STRING_FATAL(message) google::NullStreamFatal()
+#endif
+
+#if GOOGLE_STRIP_LOG <= 5
+#define COMPACT_GOOGLE_LOG_LOG3 google::LogMessage( \
+      __FILE__, __LINE__, google::LOG3)
+#define LOG_TO_STRING_LOG2(message) google::LogMessage( \
+      __FILE__, __LINE__, google::LOG3, message)
+#else
+#define COMPACT_GOOGLE_LOG_FATAL google::NullStreamFatal()
+#define LOG_TO_STRING_FATAL(message) google::NullStreamFatal()
+#endif
+
+#if GOOGLE_STRIP_LOG <= 6
+#define COMPACT_GOOGLE_LOG_LOG4 google::LogMessage( \
+      __FILE__, __LINE__, google::LOG4)
+#define LOG_TO_STRING_LOG2(message) google::LogMessage( \
+      __FILE__, __LINE__, google::LOG4, message)
+#else
+#define COMPACT_GOOGLE_LOG_FATAL google::NullStreamFatal()
+#define LOG_TO_STRING_FATAL(message) google::NullStreamFatal()
+#endif
+
+#if GOOGLE_STRIP_LOG <= 7
+#define COMPACT_GOOGLE_LOG_LOG5 google::LogMessage( \
+      __FILE__, __LINE__, google::LOG5)
+#define LOG_TO_STRING_LOG2(message) google::LogMessage( \
+      __FILE__, __LINE__, google::LOG5, message)
+#else
+#define COMPACT_GOOGLE_LOG_FATAL google::NullStreamFatal()
+#define LOG_TO_STRING_FATAL(message) google::NullStreamFatal()
+#endif
+
+
+#if GOOGLE_STRIP_LOG <= 8
+#define COMPACT_GOOGLE_LOG_LOG6 google::LogMessage( \
+      __FILE__, __LINE__, google::LOG6)
+#define LOG_TO_STRING_LOG2(message) google::LogMessage( \
+      __FILE__, __LINE__, google::LOG6, message)
+#else
+#define COMPACT_GOOGLE_LOG_FATAL google::NullStreamFatal()
+#define LOG_TO_STRING_FATAL(message) google::NullStreamFatal()
+#endif
+
+
+#if GOOGLE_STRIP_LOG <= 9
+#define COMPACT_GOOGLE_LOG_FATAL google::LogMessageFatal( \
+      __FILE__, __LINE__)
+#define LOG_TO_STRING_FATAL(message) google::LogMessage( \
+      __FILE__, __LINE__, google::GLOG_FATAL, message)
+#else
+#define COMPACT_GOOGLE_LOG_FATAL google::NullStreamFatal()
+#define LOG_TO_STRING_FATAL(message) google::NullStreamFatal()
+#endif
+
+
 
 #if defined(NDEBUG) && !defined(DCHECK_ALWAYS_ON)
 #define DCHECK_IS_ON() 0
@@ -444,7 +511,7 @@ DECLARE_bool(stop_logging_if_full_disk);
 // LogMessageFatal), to be consistent with the original behavior.
 #if !DCHECK_IS_ON()
 #define COMPACT_GOOGLE_LOG_DFATAL COMPACT_GOOGLE_LOG_ERROR
-#elif GOOGLE_STRIP_LOG <= 3
+#elif GOOGLE_STRIP_LOG <= NUM_SEVERITIES
 #define COMPACT_GOOGLE_LOG_DFATAL @ac_google_namespace@::LogMessage( \
       __FILE__, __LINE__, @ac_google_namespace@::GLOG_FATAL)
 #else
@@ -769,13 +836,13 @@ typedef std::string _Check_string;
     log(__FILE__, __LINE__, _result).stream()
 #endif  // STATIC_ANALYSIS, DCHECK_IS_ON()
 
-#if GOOGLE_STRIP_LOG <= 3
+#if GOOGLE_STRIP_LOG <= NUM_SEVERITIES
 #define CHECK_OP(name, op, val1, val2) \
   CHECK_OP_LOG(name, op, val1, val2, @ac_google_namespace@::LogMessageFatal)
 #else
 #define CHECK_OP(name, op, val1, val2) \
   CHECK_OP_LOG(name, op, val1, val2, @ac_google_namespace@::NullStreamFatal)
-#endif // STRIP_LOG <= 3
+#endif // STRIP_LOG <= NUM_SEVERITIES
 
 // Equality/Inequality checks - compare two values, and log a FATAL message
 // including the two values when the result is not as expected.  The values

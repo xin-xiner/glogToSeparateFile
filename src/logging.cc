@@ -300,7 +300,7 @@ static GLogColor SeverityToColor(LogSeverity severity) {
     break;
   default:
     // should never get here.
-    assert(false);
+    color = COLOR_DEFAULT;
   }
   return color;
 }
@@ -386,7 +386,9 @@ int64 LogMessage::num_messages_[NUM_SEVERITIES] = {0, 0, 0, 0};
 static bool stop_writing = false;
 
 const char*const LogSeverityNames[NUM_SEVERITIES] = {
-  "INFO", "WARNING", "ERROR", "FATAL"
+  "INFO","WARNING", "ERROR",
+  "LOG1","LOG2","LOG3","LOG4","LOG5","LOG6",
+  "FATAL"
 };
 
 // Has the user called SetExitOnDFatal(true)?
@@ -782,8 +784,16 @@ inline void LogDestination::LogToAllLogfiles(LogSeverity severity,
   if ( FLAGS_logtostderr ) {           // global flag: never log to file
     ColoredWriteToStderr(severity, message, len);
   } else {
-    for (int i = severity; i >= 0; --i)
-      LogDestination::MaybeLogToLogfile(i, timestamp, message, len);
+      if(severity<3)//When it's INFO, WARNING, ERROR, log to all files that severity is lower.
+      {
+          for (int i = severity; i >= 0; --i)
+              LogDestination::MaybeLogToLogfile(i, timestamp, message, len);
+      }
+      else//When it's LOG1, LOG2, etc. and FATAL, only log itself.
+      {
+          LogDestination::MaybeLogToLogfile(severity, timestamp, message, len);
+      }
+
   }
 }
 
